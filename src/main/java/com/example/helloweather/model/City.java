@@ -10,35 +10,37 @@ public class City {
     private String citycode;
     private int provinceid;
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
 
     }
 
-    public String getCityname(){
+    public String getCityname() {
         return cityname;
 
     }
-    public void setCityname(String cityname){
+
+    public void setCityname(String cityname) {
         this.cityname = cityname;
     }
 
-    public String getCitycode(){
-        return  citycode;
+    public String getCitycode() {
+        return citycode;
     }
-    public void setCitycode(String citycode){
+
+    public void setCitycode(String citycode) {
         this.citycode = citycode;
     }
 
-    public int getProvinceid(){
+    public int getProvinceid() {
         return provinceid;
     }
 
-    public void setProvinceid(int provinceid){
+    public void setProvinceid(int provinceid) {
         this.provinceid = provinceid;
     }
 }
