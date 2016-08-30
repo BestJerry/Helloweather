@@ -1,7 +1,10 @@
 package com.example.helloweather.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -59,6 +62,13 @@ public class ChooseAreaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.getBoolean("city_selected", false)) {
+            Intent intent = new Intent(this, WeatherActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.choose_area);
         listView = (ListView) findViewById(R.id.list_view);
@@ -75,6 +85,12 @@ public class ChooseAreaActivity extends AppCompatActivity {
                 } else if (currentlevel == level_city) {
                     selectedcity = cityList.get(index);
                     querycounties();
+                } else if (currentlevel == level_county) {
+                    String countycode = countyList.get(index).getCountycode();
+                    Intent intent = new Intent(ChooseAreaActivity.this, WeatherActivity.class);
+                    intent.putExtra("county_code", countycode);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
