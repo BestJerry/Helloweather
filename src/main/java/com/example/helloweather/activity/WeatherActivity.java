@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.helloweather.R;
+import com.example.helloweather.service.AutoUpdateService;
 import com.example.helloweather.util.HttpUtil;
 import com.example.helloweather.util.Httpcallbacklistener;
 import com.example.helloweather.util.Utility;
@@ -138,6 +139,8 @@ public class WeatherActivity extends AppCompatActivity implements View.OnClickLi
         currentdatetext.setText(preferences.getString("current_date", ""));
         weatherinfolayout.setVisibility(View.VISIBLE);
         citynametext.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
 
     }
 

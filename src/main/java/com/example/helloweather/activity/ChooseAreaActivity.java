@@ -65,10 +65,10 @@ public class ChooseAreaActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        isfromweatheractivity = getIntent().getBooleanExtra("from_weather_activity",false);
+        isfromweatheractivity = getIntent().getBooleanExtra("from_weather_activity", false);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         //已经选择了城市且不是从weatheractivity跳转过来的，才会直接跳转到weatheractivity
-        if (preferences.getBoolean("city_selected", false)&&!isfromweatheractivity) {
+        if (preferences.getBoolean("city_selected", false) && !isfromweatheractivity) {
             Intent intent = new Intent(this, WeatherActivity.class);
             startActivity(intent);
             finish();
@@ -239,8 +239,8 @@ public class ChooseAreaActivity extends AppCompatActivity {
         } else if (currentlevel == level_city) {
             queryprovinces();
         } else {
-            if(isfromweatheractivity){
-                Intent intent = new Intent(this,WeatherActivity.class);
+            if (isfromweatheractivity) {
+                Intent intent = new Intent(this, WeatherActivity.class);
                 startActivity(intent);
             }
             finish();

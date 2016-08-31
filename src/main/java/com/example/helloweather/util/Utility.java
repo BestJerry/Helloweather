@@ -1,8 +1,8 @@
 package com.example.helloweather.util;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -15,6 +15,7 @@ import com.example.helloweather.model.Province;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -104,12 +105,10 @@ public class Utility {
 
     //将服务器返回的所有天气信息存储到sharedpreferences文件中
 
+    @TargetApi(Build.VERSION_CODES.N)
     public static void saveweatherinfo(Context context, String cityname, String weathercode, String temp1,
                                        String temp2, String weatherdesp, String publishtime) {
-        SimpleDateFormat sdf = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            sdf = new SimpleDateFormat("yyyy年M月d日", Locale.CHINA);
-        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年M月d日", Locale.CHINA);
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putBoolean("city_selected", true);
         editor.putString("city_name", cityname);
@@ -118,9 +117,8 @@ public class Utility {
         editor.putString("temp2", temp2);
         editor.putString("weather_desp", weatherdesp);
         editor.putString("publish_time", publishtime);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            editor.putString("current_date", sdf.format(new Date()));
-        }
+
+        editor.putString("current_date", sdf.format(new Date()));
         editor.commit();
     }
 
